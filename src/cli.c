@@ -208,6 +208,7 @@ static void		cli_create_help(void);
 static void		file_create_src(void);
 static void		file_create_config(void);
 static void		file_create_gitignore(void);
+static void		file_create_dotenv(void);
 static void		file_create_python_src(void);
 static void		file_create_python_config(void);
 
@@ -235,6 +236,7 @@ static struct filegen gen_files[] = {
 	{ file_create_src },
 	{ file_create_config },
 	{ file_create_gitignore },
+	{ file_create_dotenv },
 	{ NULL }
 };
 
@@ -383,6 +385,8 @@ static const char *dh2048_data =
 	"-----END DH PARAMETERS-----";
 
 static const char *gitignore = "*.o\n.flavor\n.objs\n%s.so\nassets.h\ncert\n";
+
+static const char *dotenv = "DB_HOST=127.0.0.1\nDB_USERNAME=\nDB_PASSWORD=\nDB_NAME=\n\nMAIL_USERNAME=\nMAIL_PASSWORD=\nMAIL_HOST=\nMAIL_PORT=465\nMAIL_ENCRYPTION=ssl\n";
 
 #endif /* !KODEV_MINIMAL */
 
@@ -925,6 +929,19 @@ file_create_gitignore(void)
 
 	(void)cli_vasprintf(&name, "%s/.gitignore", appl);
 	l = cli_vasprintf(&data, gitignore, appl);
+	cli_file_create(name, data, l);
+	free(name);
+	free(data);
+}
+
+static void
+file_create_dotenv(void)
+{
+	int		l;
+	char		*name, *data;
+
+	(void)cli_vasprintf(&name, "%s/.env", appl);
+	l = cli_vasprintf(&data, dotenv, appl);
 	cli_file_create(name, data, l);
 	free(name);
 	free(data);
