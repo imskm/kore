@@ -94,6 +94,7 @@ int	kore_pgsql_query_param_fields(struct kore_pgsql *, const void *,
 	    int, int, const char **, int *, int *);
 int	kore_pgsql_register(const char *, const char *);
 int	kore_pgsql_ntuples(struct kore_pgsql *);
+int	kore_pgsql_naffected(struct kore_pgsql *);
 int	kore_pgsql_nfields(struct kore_pgsql *);
 void	kore_pgsql_logerror(struct kore_pgsql *);
 char	*kore_pgsql_fieldname(struct kore_pgsql *, int);

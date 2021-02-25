@@ -435,6 +435,18 @@ kore_pgsql_ntuples(struct kore_pgsql *pgsql)
 }
 
 int
+kore_pgsql_naffected(struct kore_pgsql *pgsql)
+{
+	int n = 0;
+	char *ret;
+
+	ret = PQcmdTuples(pgsql->result);
+	sscanf(ret, "%d", &n);
+
+	return n;
+}
+
+int
 kore_pgsql_nfields(struct kore_pgsql *pgsql)
 {
 	return (PQnfields(pgsql->result));
