@@ -434,14 +434,17 @@ kore_pgsql_ntuples(struct kore_pgsql *pgsql)
 	return (PQntuples(pgsql->result));
 }
 
-int
+long long
 kore_pgsql_naffected(struct kore_pgsql *pgsql)
 {
-	int n = 0;
-	char *ret;
+	int err = 0;
+	const char *ret;
+	long long n;
 
 	ret = PQcmdTuples(pgsql->result);
-	sscanf(ret, "%d", &n);
+	n = kore_strtonum(ret, 10, 0, LONG_MAX, &err);
+	if (err != KORE_RESULT_OK)
+		n = 0;
 
 	return n;
 }
