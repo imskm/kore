@@ -384,7 +384,7 @@ static const char *dh2048_data =
 	"xx2vTUQMqRbB4UdG2zuzzr5j98HDdblQ+wIBAg==\n"
 	"-----END DH PARAMETERS-----";
 
-static const char *gitignore = "*.o\n.flavor\n.objs\n%s.so\nassets.h\ncert\n";
+static const char *gitignore = "*.o\n.flavor\n.objs\n%s.so\nassets.h\ncert\nkore.pid\n";
 
 static const char *dotenv = "DB_HOST=127.0.0.1\nDB_USERNAME=\nDB_PASSWORD=\nDB_NAME=\n\nMAIL_USERNAME=\nMAIL_PASSWORD=\nMAIL_HOST=\nMAIL_PORT=465\nMAIL_ENCRYPTION=ssl\n";
 
