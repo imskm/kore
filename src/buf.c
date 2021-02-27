@@ -138,7 +138,8 @@ kore_buf_release(struct kore_buf *buf, size_t *len)
 	u_int8_t	*p;
 
 	p = buf->data;
-	*len = buf->offset;
+	if (len != NULL)
+		*len = buf->offset;
 
 	buf->data = NULL;
 	kore_buf_free(buf);
